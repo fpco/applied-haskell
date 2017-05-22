@@ -5,6 +5,7 @@
 * [String Types](string-types.md)
 * [Vector](vector.md)
 * [Containers](containers.md)
+* Let's revisit that data structure quiz...
 * [Data types](data-types.md)
 * [Primitive Haskell](primitive.md)
 * [mono-traversable and classy-prelude](mono-classy.md)

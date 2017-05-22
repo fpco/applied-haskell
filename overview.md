@@ -28,7 +28,8 @@
 
 * Ask questions
 * Bring up real-world problems you've encountered
-* Let's collect a list of topics that can be covered if we have time
+* This should be an interactive session as much as possible, __no one
+  be shy!__
 
 ### Get started
 
@@ -40,7 +41,6 @@
 * The content I'm sharing here: <https://github.com/fpco/applied-haskell>
     * Careful: don't cheat and read the answers!
 * Let's go around and introduce ourselves
-    * Name
 * And fill out this form if you haven't please
     * <https://goo.gl/forms/BlDw2O5zQ0tBeiSH2>
 
@@ -162,7 +162,9 @@ extra-deps:
 - acme-missiles-0.3
 ```
 
-### Quiz: package or stack.yaml
+### Quiz: package.yaml or stack.yaml
+
+Figure out where this information goes
 
 * My code needs to use the `process` package
 * I want to specify an exact version of a dependency
@@ -174,7 +176,7 @@ extra-deps:
 
 * Useful for single-file code
 * Nicely portable, just needs Stack
-* We'll use it a lot today
+* We'll use it a lot in this course
 
 ### Stack script example
 

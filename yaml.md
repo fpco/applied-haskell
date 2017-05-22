@@ -126,3 +126,17 @@ Config {awsSecret = "foobar", homeResponse = "Goodbye"}
 * Must provide config file(s) on command line
 * Must provide `AWS_SECRET`
 * If provided, `HOME_RESPONSE` changes that response payload
+
+## Exercises
+
+Write a Haskell program to generate the following YAML file:
+
+```yaml
+- title: Star Wars
+  director: George Lucas
+- title: Transformers
+  director: Michael Bay
+```
+
+Write a Haskell program to convert a JSON formatted file to YAML
+format, and vice-versa.

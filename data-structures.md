@@ -1,6 +1,9 @@
 # Data Structures
 
-You mean Haskell has things besides lists???
+*You mean Haskell has things besides lists???*
+
+We're starting today with a focus on data structures, since getting
+your data right is step 1 to great Haskell code.
 
 ## Generic data structures
 
@@ -35,23 +38,20 @@ There are three basic flavors to the data structures
 * Lazy `ByteString` and `Text` still have strict chunks
 * Boxed vectors are spine strict
 * `Map` has strict and lazy modules, different impacts on values
+* Unboxed and storable vectors are fullhy strict.
 
 Impacts: undefined, infinite structures, performance, memory usage.
 
 ## Some caveats
 
 * Unlike the other sequences, ByteString and Text are monomorphic
-* There are three common flavors of Vector, we'll cover them later
+* There are three common flavors of Vector, we'll cover the
+  differences later
 * IntMap and IntSet requires Int keys
 * Some of the structures have constraints on keys or values
 
 There are also ByteString and Text builders for efficient
 construction.
-
-__First task today__ Get comfortable with these core data structures!
-
-__Remember__ The most important thing you'll do in a Haskell program
-is properly model the data!
 
 ### Quiz: Pick the data structure
 

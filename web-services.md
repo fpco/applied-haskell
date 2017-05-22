@@ -65,6 +65,9 @@ Polo: foo
 Hello WAI!
 ```
 
+__Question__ Notice the lower case `marco` in the code, yet it
+matches. What black magic is this?
+
 ### Application
 
 ```haskell
@@ -72,6 +75,9 @@ type Application
    = Request
   -> (Response -> IO ResponseReceived)
   -> IO ResponseReceived
+
+-- Basically a more complicated version of
+type SimpleApp = Request -> IO Response
 ```
 
 * CPS transformed to allow the application to acquire a scarce resource
@@ -95,6 +101,9 @@ main = run 3000 $ \_req send -> withBinaryFile "Main.hs" ReadMode $ \h -> do
     [("Content-Type", "text/plain")]
     lbs
 ```
+
+__Exercise__ Write a function `unsimpleApp :: SimpleApp ->
+Application`.
 
 ### Request
 
@@ -136,9 +145,12 @@ $ curl http://localhost:3000/foo
 Something went wrong
 ```
 
+__Exercise__ Write an application that somehow responds to query
+string parameters.
+
 ### Response
 
-A few core smart response constructors:
+A few core smart constructors for `Response`:
 
 ```haskell
 responseFile
@@ -174,7 +186,9 @@ type StreamingBody
 
 -- Useful for WebSockets in particular
 responseRaw
-  :: (IO ByteString -> (ByteString -> IO ()) -> IO ())
+  :: (   IO ByteString         -- receive from client
+      -> (ByteString -> IO ()) -- send to client
+      -> IO ())
   -> Response
   -> Response
 ```
@@ -267,8 +281,8 @@ main = run 3000 $ \_req send -> withBinaryFiles files ReadMode $ \hs ->
         loop
 ```
 
-__Question__ This implementation has an inefficiency, what is it? How
-can we work around it?
+__Question__ This implementation uses too many of some resource, what
+is it? How can we work around it?
 
 ```haskell
 #!/usr/bin/env stack
@@ -342,7 +356,19 @@ performance difference will be here vs the code above?
 * Client code:
 
 ```haskell
+#!/usr/bin/env stack
+-- stack --resolver lts-8.12 script
+{-# LANGUAGE OverloadedStrings #-}
+import Data.Aeson
+import Network.HTTP.Simple
 
+main :: IO ()
+main = do
+  let req = setRequestMethod "POST"
+          $ setRequestBodyJSON (object ["hello" .= (1 :: Int)])
+            "http://localhost:3000"
+  res <- httpJSON req
+  print (res :: Response Value)
 ```
 
 And server code
@@ -456,3 +482,39 @@ main = run 3000
 * I'm giving a talk on Conduit and Yesod at the conference itself
 * Feel free to attend... or if everyone wants I'll give a sneak peek
   now
+
+## Exercises
+
+* Write a simple file server WAI app, that serves files in the current
+  directory
+    * *Security challenge time*
+* Write an echo server, which sends back the same headers and body
+
+```haskell
+#!/usr/bin/env stack
+-- stack --resolver lts-8.12 script
+{-# LANGUAGE OverloadedStrings #-}
+import Network.Wai
+import Network.Wai.Handler.Warp
+import Network.HTTP.Types
+import qualified Data.ByteString as B
+import Data.Function (fix)
+import Control.Monad (unless)
+import Data.ByteString.Builder (byteString)
+
+main :: IO ()
+main = run 3000 $ \req send -> send $ responseStream
+  status200
+  (requestHeaders req)
+  $ \chunk _flush -> fix $ \loop -> do
+    bs <- requestBody req
+    unless (B.null bs) $ do
+      chunk $ byteString bs
+      loop
+```
+
+Problems:
+
+* Some request headers should _not_ be echoed (like `content-length`)
+* Reading request body while writing response body concurrently may
+  not be supported by all clients or WAI handlers, caveat emptor

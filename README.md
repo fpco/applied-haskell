@@ -34,3 +34,8 @@
 * [yaml](yaml.md)
 * [Web services](web-services.md)
 * [FFI](ffi.md)
+
+Some code samples from the training:
+
+* https://github.com/snoyberg/rate-limit
+* https://gist.github.com/snoyberg/7ac111bc873be6a361e452adb5454cb9

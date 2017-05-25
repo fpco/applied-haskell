@@ -275,7 +275,6 @@ main :: IO ()
 main = do
   v <- V.replicateM 100 $ randomRIO (1, 10000 :: Int)
   print $ V.modify sort v
-haskell
 ```
 
 Or

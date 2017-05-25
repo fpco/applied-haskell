@@ -1,7 +1,7 @@
 # Exceptions
 
 * [safe-exceptions package](https://haskell-lang.org/tutorial/exception-safety)
-* [Exceptions best practices](https://haskell-lang.org/tutorial/exception-safety)
+* [Exceptions best practices](https://www.fpcomplete.com/blog/2016/11/exceptions-best-practices-haskell)
   (highly opinionated)
 * Let's
   [review the API](https://www.stackage.org/haddock/lts-8.12/safe-exceptions-0.1.5.0/Control-Exception-Safe.html)

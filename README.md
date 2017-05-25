@@ -19,7 +19,7 @@
 * [Logging](logging.md)
 * [External processes via typed-process](https://haskell-lang.org/library/typed-process)
 * [hspec](hspec.md) (and some criterion for fun)
-* [Performance](performance.md)
+* [Profiling](profiling.md)
 * conduit
     * [Slides for later this week](https://www.snoyman.com/reveal/conduit-yesod)
     * [Official tutorial](https://haskell-lang.org/library/conduit)

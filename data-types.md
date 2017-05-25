@@ -157,7 +157,8 @@ main = print $ sum [1..100 :: Int]
 Hopefully GHC optimizes this into a tight loop. But let's write that
 tight loop manually:
 
-```#!/usr/bin/env stack
+```haskell
+#!/usr/bin/env stack
 -- stack --resolver lts-8.12 script
 {-# LANGUAGE BangPatterns #-}
 main :: IO ()
@@ -166,7 +167,6 @@ main = print $ loop 0 1
     loop !total i
       | i > 100 = total
       | otherwise = loop (total + i) (i + 1)
-haskell
 ```
 
 * Why did I put a bang on `total` but not `i`?

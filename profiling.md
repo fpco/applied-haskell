@@ -514,6 +514,8 @@ The full output: <https://gist.github.com/snoyberg/53b1257507d0b2d5ffc6124ba5ac9
 
 ## Exercise
 
+FIXME use gauge
+
 Create a criterion benchmark with the various examples from above, and
 see what turns out to be fastest.
 

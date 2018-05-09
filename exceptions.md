@@ -1,5 +1,10 @@
 # Exceptions
 
+FIXME
+
+https://www.snoyman.com/reveal/async-exception-handling
+https://www.fpcomplete.com/blog/2018/04/async-exception-handling-haskell
+
 * [safe-exceptions package](https://haskell-lang.org/tutorial/exception-safety)
 * [Exceptions best practices](https://www.fpcomplete.com/blog/2016/11/exceptions-best-practices-haskell)
   (highly opinionated)

@@ -39,7 +39,7 @@
 #!/usr/bin/env stack
 -- stack --resolver lts-11.10 script
 import qualified Data.Vector as V
-import Control.Exception.Safe (tryAny)
+import UnliftIO.Exception (tryAny)
 
 main :: IO ()
 main = do
@@ -173,17 +173,17 @@ Guess the output:
 import qualified Data.Vector as VB
 import qualified Data.Vector.Storable as VS
 import qualified Data.Vector.Unboxed as VU
-import Control.Spoon (spoon)
+import UnliftIO.Exception (pureTry)
 
 main :: IO ()
 main = do
-  print $ spoon $ VB.head $ VB.fromList (():undefined)
-  print $ spoon $ VS.head $ VS.fromList (():undefined)
-  print $ spoon $ VU.head $ VU.fromList (():undefined)
+  print $ pureTry $ VB.head $ VB.fromList (():undefined)
+  print $ pureTry $ VS.head $ VS.fromList (():undefined)
+  print $ pureTry $ VU.head $ VU.fromList (():undefined)
 
-  print $ spoon $ VB.head $ VB.fromList [(), undefined]
-  print $ spoon $ VS.head $ VS.fromList [(), undefined]
-  print $ spoon $ VU.head $ VU.fromList [(), undefined]
+  print $ pureTry $ VB.head $ VB.fromList [(), undefined]
+  print $ pureTry $ VS.head $ VS.fromList [(), undefined]
+  print $ pureTry $ VU.head $ VU.fromList [(), undefined]
 ```
 
 * Boxed: spine strict
@@ -222,7 +222,7 @@ __Exercise__ Implement `create` and `modify`
 {-# LANGUAGE FlexibleContexts #-}
 import qualified Data.Vector as V
 import qualified Data.Vector.Mutable as VM
-import Control.Exception.Safe
+import UnliftIO.Exception
 import GHC.Prim (RealWorld)
 
 -- type constrained to avoid ambiguities

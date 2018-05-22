@@ -298,7 +298,7 @@ import Data.Function (fix)
 import Control.Monad (unless, forM_)
 import Control.Monad.Trans.Resource
 import Control.Monad.IO.Class
-import Control.Exception.Safe (bracket)
+import UnliftIO.Exception (bracket)
 
 files :: [FilePath]
 files = ["file1.txt", "file2.txt"]
@@ -421,7 +421,7 @@ import Data.Aeson.Parser (json)
 import Data.Aeson.Types
 import Data.Conduit
 import Data.Conduit.Attoparsec (sinkParser)
-import Control.Exception.Safe
+import UnliftIO.Exception
 import qualified Data.ByteString.Lazy.Char8 as BL8
 
 newtype Body = Body Int

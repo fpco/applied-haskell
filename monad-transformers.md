@@ -259,10 +259,10 @@ __Question__ Who can figure out why?
 Use type system to ensure there's no discarded state.
 
 ```haskell
-#!/usr/bin/env stack
+-- FIXME #!/usr/bin/env stack
 -- stack --resolver lts-11.10 script
 {-# LANGUAGE FlexibleContexts #-}
-import Control.Monad.IO.Class
+import Control.Monad.IO.Unlift
 import Control.Monad.Trans.Control
 import Control.Monad.State.Strict
 import Control.Monad.Reader
@@ -373,6 +373,9 @@ instance (Monad m, Monoid w) => MonadWriter w (WriterT w m) where
 
 runWriterT :: (Monad m, Monoid w) => WriterT w m a -> m (a, w)
 runWriterT (WriterT f) = f mempty
+
+main :: IO ()
+main = pure ()
 ```
 
 ## Monad transformers
@@ -1047,6 +1050,7 @@ these exercises:
 Define a monad transformer `ReaderT`, such that the following works:
 
 ```haskell
+-- Does not compile
 #!/usr/bin/env stack
 -- stack --resolver lts-11.10 script
 {-# LANGUAGE DeriveFunctor #-}
@@ -1168,6 +1172,7 @@ we learned last week. Fix up the following program so that it
 compiles.
 
 ```haskell
+-- Does not compile
 #!/usr/bin/env stack
 -- stack --resolver lts-11.10 script
 import Control.Monad.Reader

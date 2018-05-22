@@ -83,7 +83,7 @@ main = do
   let fp = "somefile.txt"
   B.writeFile fp $ "Hello " <> "World!"
   contents <- B.readFile fp
-  B.putStrLn $ B.takeWhile (/= 32) contents
+  B.putStr $ B.takeWhile (/= 32) contents <> "\n"
 ```
 
 __Question__ How are our string literals being treated as
@@ -104,7 +104,7 @@ main = do
   let fp = "somefile.txt"
   B.writeFile fp $ "Hello " <> "World!"
   contents <- B.readFile fp
-  B.putStrLn $ B.takeWhile (/= _space) contents
+  B.putStr $ B.takeWhile (/= _space) contents <> "\n"
 ```
 
 Or assume ASCII directly.
@@ -216,14 +216,14 @@ import qualified Data.ByteString as B
 import qualified Data.ByteString.Char8 as B8
 import qualified Data.ByteString.Lazy as BL
 import qualified Data.ByteString.Lazy.Char8 as BL8
-import Control.Spoon
+import UnliftIO.Exception (pureTry)
 
 main :: IO ()
 main = do
     let bomb = ['h', 'e', 'l', 'l', 'o', undefined]
-    print $ spoon $ take 5 bomb
-    print $ spoon $ B.take 5 $ B8.pack bomb
-    print $ spoon $ BL.take 5 $ BL8.pack bomb
+    print $ pureTry $ take 5 bomb
+    print $ pureTry $ B.take 5 $ B8.pack bomb
+    print $ pureTry $ BL.take 5 $ BL8.pack bomb
 ```
 
 Guess the output!
@@ -243,14 +243,14 @@ import qualified Data.ByteString as B
 import qualified Data.ByteString.Char8 as B8
 import qualified Data.ByteString.Lazy as BL
 import qualified Data.ByteString.Lazy.Char8 as BL8
-import Control.Spoon
+import UnliftIO.Exception (pureTry)
 
 main :: IO ()
 main = do
     let bomb = concat $ replicate 10000 "hello" ++ [undefined]
-    print $ spoon $ take 5 bomb
-    print $ spoon $ B.take 5 $ B8.pack bomb
-    print $ spoon $ BL.take 5 $ BL8.pack bomb
+    print $ pureTry $ take 5 bomb
+    print $ pureTry $ B.take 5 $ B8.pack bomb
+    print $ pureTry $ BL.take 5 $ BL8.pack bomb
 ```
 
 Guess the output this time:

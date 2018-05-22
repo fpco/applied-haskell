@@ -5,7 +5,7 @@
 Does this work?
 
 ```haskell
-#!/usr/bin/env stack
+-- expected to fail #!/usr/bin/env stack
 -- stack --resolver lts-11.10 script
 import qualified Data.Foldable as F
 import qualified Data.Vector as V
@@ -143,6 +143,7 @@ Disadvantages:
 Sure, let's do it!
 
 ```haskell
+-- Does not compile
 #!/usr/bin/env stack
 -- stack --resolver lts-11.10 script
 {-# LANGUAGE TypeFamilies #-}
@@ -221,7 +222,7 @@ main = do
 ```haskell
 #!/usr/bin/env stack
 -- stack --resolver lts-11.10 script
-import           Control.Exception.Safe (tryAny)
+import           UnliftIO.Exception (tryAny)
 import           Data.MonoTraversable
 import           Data.NonNull
 import           Data.Sequences

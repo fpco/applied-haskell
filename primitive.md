@@ -114,6 +114,9 @@ runST :: (forall s. ST s a) -> a
 runST (ST f) =
   case runRW# f of
     (# _ignoredState, x #) -> x
+
+main :: IO ()
+main = pure ()
 ```
 
 __Exercise__ Implement a scaled down version of `ST` with a `Monad`

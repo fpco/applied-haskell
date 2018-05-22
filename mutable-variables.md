@@ -53,7 +53,7 @@ stack --resolver lts-11.10 exec -- ghc -O2 -threaded -with-rtsopts=-N foo.hs && 
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 import Data.IORef
-import Control.Exception.Safe
+import UnliftIO (MonadUnliftIO, SomeException, tryAny)
 import Control.Monad.Reader
 import Control.Monad.State.Class
 import System.Random (randomRIO)
@@ -66,7 +66,7 @@ instance MonadIO m => MonadState s (StateRefT s m) where
   put x = StateRefT $ ReaderT $ \ref -> liftIO $ writeIORef ref $! x
 
 runStateRefT
-  :: (MonadCatch m, MonadIO m)
+  :: MonadUnliftIO m
   => StateRefT s m a
   -> s
   -> m (s, Either SomeException a)
@@ -93,13 +93,14 @@ inner =
 Challenge: can we write this to work with `ST` as well?
 
 ```haskell
+-- FIXME this doesn't make sense anymore
 #!/usr/bin/env stack
 -- stack --resolver lts-11.10 script
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 import Data.Primitive.MutVar
-import Control.Exception.Safe
+import UnliftIO (MonadUnliftIO, SomeException, tryAny)
 import Control.Monad.Reader
 import Control.Monad.State.Class
 import System.Random (randomRIO)
@@ -113,12 +114,12 @@ instance PrimMonad m => MonadState s (StateRefT s m) where
   put x = StateRefT $ ReaderT $ \ref -> writeMutVar ref $! x
 
 runStateRefT
-  :: (MonadCatch m, PrimMonad m)
+  :: MonadUnliftIO m
   => StateRefT s m a
   -> s
   -> m (s, Either SomeException a)
 runStateRefT (StateRefT (ReaderT f)) s = do
-  ref <- newMutVar s
+  ref <- liftIO $ newMutVar s
   ea <- tryAny $ f ref
   s' <- readMutVar ref
   return (s', ea)

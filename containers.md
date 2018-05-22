@@ -302,6 +302,7 @@ import qualified Data.HashMap.Strict as HashMap
 import Control.Monad.State
 
 addMoney :: (String, Int) -> State (HashMap String Int) ()
+addMoney = _
 
 main :: IO ()
 main =
@@ -404,6 +405,7 @@ scores :: Set Int
 scores = Set.fromList [1..10]
 
 dropBottom20Percent :: Ord a => Set a -> Set a
+dropBottom20Percent = _
 
 main :: IO ()
 main = print $ dropBottom20Percent scores

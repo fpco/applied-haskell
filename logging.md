@@ -45,7 +45,7 @@ __Question__ When is it valid to use `trace`?
 {-# LANGUAGE OverloadedStrings #-}
 import Control.Monad.Logger.CallStack
 import Control.Monad.IO.Class
-import Control.Exception.Safe
+import UnliftIO.Exception
 import qualified Data.Text as T
 
 main :: IO ()
@@ -80,6 +80,7 @@ Results in
 This doesn't compile:
 
 ```haskell
+-- Does not compile
 #!/usr/bin/env stack
 -- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
@@ -135,13 +136,11 @@ main = runStdoutLoggingT $ do
 -- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import Control.Monad.Logger.CallStack
-import Control.Monad.IO.Class
-import Control.Monad.Trans.Unlift
+import Control.Monad.IO.Unlift
 import Control.Concurrent.Async
 
 main :: IO ()
-main = runStdoutLoggingT $ do
-  run <- askRunBase
+main = runStdoutLoggingT $ withRunInIO $ \run ->
   liftIO $ concurrently_
     (run (logInfo "Hello"))
     (run (logInfo "World"))
@@ -150,12 +149,11 @@ main = runStdoutLoggingT $ do
 ### lifted-async
 
 ```haskell
-#!/usr/bin/env stack
+-- FIXME #!/usr/bin/env stack
 -- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import Control.Monad.Logger.CallStack
-import Control.Monad.IO.Class
-import Control.Monad.Trans.Unlift
+import Control.Monad.IO.Unlift
 import Control.Monad
 import Control.Concurrent.Async.Lifted.Safe
 

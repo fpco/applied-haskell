@@ -47,7 +47,7 @@ Recommendation: if you don't need laziness in a field, make it strict.
 #!/usr/bin/env stack
 -- stack --resolver lts-11.10 script
 import Data.Foldable (foldl')
-import Control.Spoon (spoon)
+import UnliftIO.Exception (pureTry)
 
 data Foo = Foo Int
   deriving Show
@@ -58,13 +58,13 @@ newtype Baz = Baz Int
 
 main :: IO ()
 main = do
-  print $ spoon $
+  print $ pureTry $
     case Foo undefined of
       Foo _ -> "Hello World"
-  print $ spoon $
+  print $ pureTry $
     case Bar undefined of
       Bar _ -> "Hello World"
-  print $ spoon $
+  print $ pureTry $
     case Baz undefined of
       Baz _ -> "Hello World"
 ```

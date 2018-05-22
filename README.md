@@ -20,7 +20,7 @@ started.
    you have at least version 1.7.
 2. We're going to be using LTS 11.10). You may as well install
    an unnecessarily broad number of packages right off the bat:
-   `stack build --resolver lts-11.10 classy-prelude-yesod lens rio yesod-test foldl`
+   `stack build --resolver lts-11.10 classy-prelude-yesod lens rio yesod-test foldl microlens-platform wai-conduit`
 3. Make sure you can run the script below successfully. Save it to a
    file ending with `.hs` and then run `stack filename.hs`. On
    non-Windows systems, you can also do `chmod +x filename.hs &&

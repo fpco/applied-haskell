@@ -21,6 +21,10 @@ started.
 2. We're going to be using LTS 11.10). You may as well install
    an unnecessarily broad number of packages right off the bat:
    `stack build --resolver lts-11.10 classy-prelude-yesod lens rio yesod-test foldl microlens-platform wai-conduit`
+
+     * You may also find it convenient to run `stack config set resolver lts-11.10`
+       from outside of a project to set your global resolver to match.
+
 3. Make sure you can run the script below successfully. Save it to a
    file ending with `.hs` and then run `stack filename.hs`. On
    non-Windows systems, you can also do `chmod +x filename.hs &&

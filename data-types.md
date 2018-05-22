@@ -4,7 +4,7 @@
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 import Data.Foldable (foldl')
 
 data Foo = Foo Int
@@ -45,7 +45,7 @@ Recommendation: if you don't need laziness in a field, make it strict.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 import Data.Foldable (foldl')
 import Control.Spoon (spoon)
 
@@ -112,7 +112,7 @@ unpack, thus the primitive type optimization.
 `Int` is defined in normal Haskell code, it's not a GHC
 built-in. Don't believe me?
 
-<https://www.stackage.org/haddock/lts-8.13/ghc-prim-0.5.0.0/src/GHC-Types.html#Int>
+<https://www.stackage.org/haddock/lts-11.10/ghc-prim-0.5.0.0/src/GHC-Types.html#Int>
 
 ```haskell
 data Int = I# Int#
@@ -133,7 +133,7 @@ Int# :: TYPE 'GHC.Types.IntRep
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE MagicHash #-}
 import GHC.Prim
 import GHC.Types
@@ -148,7 +148,7 @@ High level, good code:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 
 main :: IO ()
 main = print $ sum [1..100 :: Int]
@@ -159,7 +159,7 @@ tight loop manually:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE BangPatterns #-}
 main :: IO ()
 main = print $ loop 0 1
@@ -176,7 +176,7 @@ OK, let's get primitive!
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE MagicHash #-}
 import GHC.Prim
 import GHC.Types

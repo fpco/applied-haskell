@@ -7,7 +7,7 @@
 ## Get started
 
 ```
-$ stack new mylib --resolver lts-8.12
+$ stack new mylib --resolver lts-11.10
 $ cd mylib
 $ stack test
 ...

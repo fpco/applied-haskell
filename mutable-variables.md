@@ -13,7 +13,7 @@ Basic usage:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script --optimize
+-- stack --resolver lts-11.10 script --optimize
 import Data.IORef
 import Control.Concurrent.Async (mapConcurrently_)
 
@@ -41,14 +41,14 @@ main = do
 To trigger the race condition, run like this:
 
 ```
-stack --resolver lts-8.12 exec -- ghc -O2 -threaded -with-rtsopts=-N foo.hs && ./foo
+stack --resolver lts-11.10 exec -- ghc -O2 -threaded -with-rtsopts=-N foo.hs && ./foo
 ```
 
 ### Survive exceptions
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
@@ -94,7 +94,7 @@ Challenge: can we write this to work with `ST` as well?
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
@@ -143,7 +143,7 @@ Let's calculate fibs (ugh).
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
@@ -181,7 +181,7 @@ and pointer indirection. Mutable vectors to the rescue!
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
@@ -209,7 +209,7 @@ main = do
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
@@ -253,7 +253,7 @@ Onward and downward!
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 import Control.Concurrent.MVar
 import Control.Concurrent.Async (replicateConcurrently_)
 import System.Random (randomRIO)
@@ -279,7 +279,7 @@ Common pattern: send a notification between threads.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import Control.Concurrent.Async
 import Control.Concurrent.MVar
@@ -320,7 +320,7 @@ main = do
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import Control.Concurrent.STM
 import Control.Monad
@@ -361,7 +361,7 @@ Stolen from:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 import Control.Concurrent (threadDelay)
 import Control.Concurrent.Async (mapConcurrently_, concurrently_)
 import Control.Concurrent.STM (atomically)

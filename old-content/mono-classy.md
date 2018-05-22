@@ -6,7 +6,7 @@ Does this work?
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 import qualified Data.Foldable as F
 import qualified Data.Vector as V
 import qualified Data.Text as T
@@ -83,7 +83,7 @@ instance Unbox ? => Foldable V.Vector where
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE TypeFamilies #-}
 import qualified Data.Foldable as F
 import qualified Data.Vector.Unboxed as V
@@ -144,7 +144,7 @@ Sure, let's do it!
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE TypeFamilies #-}
 
 type family Element mono
@@ -189,7 +189,7 @@ and `Traversable`: they cannot change the contained type. Takeaway:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import qualified Data.NonNull as N
 import Data.MonoTraversable (opoint)
@@ -220,7 +220,7 @@ main = do
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 import           Control.Exception.Safe (tryAny)
 import           Data.MonoTraversable
 import           Data.NonNull
@@ -261,7 +261,7 @@ Annoyed by all of those imports? Say no more!
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE NoImplicitPrelude #-}
 import           ClassyPrelude
 

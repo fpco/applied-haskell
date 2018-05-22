@@ -9,7 +9,7 @@
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE RecordWildCards #-}
 {-# LANGUAGE OverloadedStrings #-}
 import Data.Aeson (withObject) -- should be provided by yaml...
@@ -81,7 +81,7 @@ home-response: _env:HOME_RESPONSE:Hello World
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import Data.Aeson (withObject)
 import Data.Text (Text)

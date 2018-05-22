@@ -16,7 +16,7 @@ https://www.snoyman.com/reveal/monad-transformer-state
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 import Control.Monad.Reader
 
 main :: IO ()
@@ -49,7 +49,7 @@ inner = do
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 import Control.Monad.Reader
 
 newtype Name = Name String
@@ -80,7 +80,7 @@ Wanna get really fancy? Lenses!
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 import Control.Monad.Reader
 import Lens.Micro
 import Lens.Micro.Extras
@@ -118,7 +118,7 @@ using primitives. __There is no reason to ever use this!__
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE MagicHash, UnboxedTuples #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
@@ -215,7 +215,7 @@ To do this, we need `MonadBaseControl`:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE FlexibleContexts #-}
 import Control.Monad
 import Control.Monad.IO.Class
@@ -260,7 +260,7 @@ Use type system to ensure there's no discarded state.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE FlexibleContexts #-}
 import Control.Monad.IO.Class
 import Control.Monad.Trans.Control
@@ -329,7 +329,7 @@ instance, which internally looks like a `StateT`.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE DeriveFunctor #-}
@@ -1039,8 +1039,8 @@ either `MonadIO` or `MonadUnliftIO`.
 You'll want to refer to the documentation for transformers and mtl for
 these exercises:
 
-* <https://www.stackage.org/lts-9.9/package/transformers-0.5.2.0>
-* <https://www.stackage.org/lts-9.9/package/mtl-2.2.1>
+* <https://www.stackage.org/lts-11.10/package/transformers-0.5.2.0>
+* <https://www.stackage.org/lts-11.10/package/mtl-2.2.1>
 
 ### Exercise 1
 
@@ -1048,7 +1048,7 @@ Define a monad transformer `ReaderT`, such that the following works:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-9.9 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE DeriveFunctor #-}
 import Control.Monad.Trans.Class
 import Control.Monad.IO.Class
@@ -1081,7 +1081,7 @@ to do this, both with and without monad transformers.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-9.9 script
+-- stack --resolver lts-11.10 script
 
 foldTerminateM :: Monad m => (b -> a -> m (Either b b)) -> b -> [a] -> m b
 foldTerminateM = _
@@ -1129,7 +1129,7 @@ clean it up.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-9.9 script
+-- stack --resolver lts-11.10 script
 import Control.Monad.Trans.Maybe
 import Text.Read (readMaybe)
 import System.IO
@@ -1169,7 +1169,7 @@ compiles.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-9.9 script
+-- stack --resolver lts-11.10 script
 import Control.Monad.Reader
 import Lens.Micro
 import Lens.Micro.Mtl (view) -- hint :)
@@ -1214,7 +1214,7 @@ This is the core idea behind `RIO`, which you can read more about at
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-9.9 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE DeriveFunctor #-}
 import Control.Monad.Trans.Class
 import Control.Monad.IO.Class
@@ -1322,7 +1322,7 @@ ageInYear = runMaybeT $ do
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-9.9 script
+-- stack --resolver lts-11.10 script
 import Control.Monad.Reader
 import Lens.Micro
 import Lens.Micro.Mtl

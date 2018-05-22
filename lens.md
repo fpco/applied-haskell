@@ -546,8 +546,8 @@ alone. Many people use macros/code generation/Template Haskell (all
 the same thing in Haskell) to automatically generate lenses, and
 sometimes typeclasses to generalize them. Examples:
 
-* https://www.stackage.org/haddock/lts-10.3/microlens-th-0.4.1.1/Lens-Micro-TH.html
-* https://www.stackage.org/haddock/lts-10.3/lens-4.15.4/Control-Lens-TH.html
+* https://www.stackage.org/haddock/lts-11.10/microlens-th-0.4.1.1/Lens-Micro-TH.html
+* https://www.stackage.org/haddock/lts-11.10/lens-4.15.4/Control-Lens-TH.html
 
 ## Best practices
 
@@ -583,7 +583,7 @@ without saying, but: use the generated lenses (`address`, `street`,
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-9.9 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE OverloadedStrings #-}
 import Lens.Micro.Platform
@@ -664,7 +664,7 @@ test passes:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-9.9 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import Lens.Micro.Platform
 import Test.Hspec
@@ -695,7 +695,7 @@ work.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-9.9 script
+-- stack --resolver lts-11.10 script
 import Lens.Micro.Platform
 import Test.Hspec
 
@@ -728,7 +728,7 @@ lens quite a bit.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-9.9 script
+-- stack --resolver lts-11.10 script
 {-# OPTIONS_GHC -Wall -Werror #-}
 {-# LANGUAGE RankNTypes #-}
 import Lens.Micro.Platform
@@ -765,7 +765,7 @@ Note that there are many other ways to solve some of these problems.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-9.9 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE OverloadedStrings #-}
 import Lens.Micro.Platform
@@ -867,7 +867,7 @@ change the data constructor from `Right` to `Left`.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-9.9 script
+-- stack --resolver lts-11.10 script
 import Lens.Micro.Platform
 import Test.Hspec
 
@@ -895,7 +895,7 @@ main = hspec $ do
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-9.9 script
+-- stack --resolver lts-11.10 script
 {-# OPTIONS_GHC -Wall -Werror #-}
 {-# LANGUAGE RankNTypes #-}
 import Lens.Micro.Platform

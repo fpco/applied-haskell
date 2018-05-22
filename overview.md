@@ -144,7 +144,7 @@ executable hello-hpack
 * Configured via `stack.yaml` file
 * 0 or more local Cabal packages
 * Specifies a *resolver*
-    * Stackage snapshot (`nightly-2017-01-01`, `lts-8.9`)
+    * Stackage snapshot (`nightly-2018-05-22`, `lts-11.10`)
     * GHC version (no extra packages)
 * Can add extra deps, flag overrides, much more
 * Can pull in packages from a Git repo
@@ -152,7 +152,7 @@ executable hello-hpack
 ### stack.yaml example
 
 ```yaml
-resolver: lts-8.12
+resolver: lts-11.10
 
 # optional
 packages:
@@ -182,7 +182,7 @@ Figure out where this information goes
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-6.15 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import qualified Data.ByteString.Lazy.Char8 as BL8
 import           Network.HTTP.Simple

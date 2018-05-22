@@ -25,7 +25,7 @@ What's wrong with this code?
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import qualified Data.ByteString.Char8 as B8
 import Data.Monoid ((<>))
@@ -73,7 +73,7 @@ Perform some I/O
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import qualified Data.ByteString as B
 import Data.Monoid ((<>))
@@ -93,7 +93,7 @@ Magic numbers like 32 are ugly, `word8` to the rescue!
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import qualified Data.ByteString as B
 import Data.Monoid ((<>))
@@ -111,7 +111,7 @@ Or assume ASCII directly.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Char8 as B8
@@ -142,7 +142,7 @@ Downsides of the `Char8` modules
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Char8 as B8
@@ -163,7 +163,7 @@ main = B8.putStr $ B8.unlines $ take 5 fibsBS
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Builder as BB
@@ -185,7 +185,7 @@ main = BB.hPutBuilder stdout $ foldr
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import Data.ByteString (ByteString)
 import qualified Data.ByteString.Char8 as B8
@@ -211,7 +211,7 @@ Non Latin characters: ????
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Char8 as B8
 import qualified Data.ByteString.Lazy as BL
@@ -238,7 +238,7 @@ Let's try again, a little bit bigger.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 import qualified Data.ByteString as B
 import qualified Data.ByteString.Char8 as B8
 import qualified Data.ByteString.Lazy as BL
@@ -275,7 +275,7 @@ Just "hello"
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 import qualified Data.ByteString as B
 
 main = B.readFile "source.txt" >>= B.writeFile "dest.txt"
@@ -287,7 +287,7 @@ main = B.readFile "source.txt" >>= B.writeFile "dest.txt"
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 import qualified Data.ByteString as B
 import System.IO
 import Data.Function (fix)
@@ -331,7 +331,7 @@ Write out a file with the line "ABC...Z\n" 1000 times.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecordWildCards #-}
 import Data.Text (Text)
@@ -389,7 +389,7 @@ Give it a shot.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecordWildCards #-}
 import Data.Text (Text)
@@ -442,7 +442,7 @@ opaque!
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ForeignFunctionInterface #-}
 import Data.Monoid ((<>))
@@ -476,7 +476,7 @@ main = do
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import qualified Data.ByteString as B
 import qualified Data.Text as T
@@ -496,7 +496,7 @@ Total decoding:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import qualified Data.ByteString as B
 import qualified Data.Text as T
@@ -519,7 +519,7 @@ __Question__ What character encoding did `TIO.putStrLn` use?
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import qualified Data.ByteString as B
 import qualified Data.Text as T
@@ -551,7 +551,7 @@ Take a UTF-8 encoded file and generate a UTF-16 encoded file
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-8.12 script
+-- stack --resolver lts-11.10 script
 {-# LANGUAGE OverloadedStrings #-}
 import qualified Data.ByteString as B
 import qualified Data.Text.Encoding as TE

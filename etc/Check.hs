@@ -2,9 +2,10 @@
 -- stack --resolver lts-11.10 script
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE MultiWayIf #-}
 import RIO
 import RIO.Process
-import RIO.FilePath (takeExtension)
+import RIO.FilePath (takeExtension, replaceExtension)
 import RIO.Directory (createDirectoryIfMissing, removeFile, doesFileExist)
 import Conduit
 import Text.Sundown
@@ -76,9 +77,13 @@ run = do
     pure $ HS.singleton fp
     )
   runConduitRes $ sourceDirectory "etc/snippets" .| mapM_C (\fp ->
-    if takeExtension fp == ".hs" && fp `HS.member` snippetFPs
-      then proc "stack" ["--resolver", "lts-11.10", "ghc", "--", fp, "-fdefer-typed-holes"] runProcess_
-      else do
+    if
+      | takeExtension fp /= ".hs" -> pure ()
+      | fp `HS.member` snippetFPs -> do
+        compiled <- doesFileExist $ replaceExtension fp ".o"
+        unless compiled $
+          proc "stack" ["--resolver", "lts-11.10", "ghc", "--", fp, "-fdefer-typed-holes"] runProcess_
+      | otherwise -> do
         logDebug $ "Removing file: " <> fromString fp
         removeFile fp)
 

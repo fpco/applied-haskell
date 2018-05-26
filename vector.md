@@ -1,8 +1,13 @@
 # vector
 
+Section exercise: use mutable vectors to write a program that will
+deal you a random hand of poker. Bonus: use an unboxed vector. Double
+bonus: minimize the memory representation.
+
 * Just like lists, but not
 * Packed representation
 * Spine strict (sometimes value strict)
+* Plus a mutable interface
 
 ## The Three Types
 
@@ -437,3 +442,15 @@ printFreq index count = putStrLn $ concat
     , show count
     ]
 ```
+
+## Section exercise
+
+* Use `mwc-random` package
+    * Not a recommendation for random packages, just a good way to
+      practice vectors
+* May want to consider:
+  [vector-th-unbox](https://www.stackage.org/package/vector-th-unbox)
+* Note: that won't provide the tightest representation!
+* Hard core: write an `Unbox` instance by hand
+* Less hard core (what I'd probably do): can you use
+  `GeneralizedNewtypeDeriving`?

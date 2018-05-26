@@ -1,5 +1,46 @@
 # String types
 
+Exercise covering this section and the next section (containers):
+convert the following CSV-like data:
+
+```
+Alice,Los Angeles,California
+Bob,New York, New York
+Charlie,San Francisco,California
+David,Portland,Oregon
+Edward,Los Angeles,California
+Frank,New York,New York
+```
+
+Into this HTML (spacing irrelevant)
+
+```html
+<ul>
+  <li>California
+    <dl>
+      <dt>Los Angeles</dt>
+      <dd>2</dd>
+      <dt>San Francisco</dt>
+      <dd>1</dd>
+    </dl>
+  </li>
+  <li>New York
+    <dl>
+      <dt>New York</dt>
+      <dd>2</dd>
+    </dt>
+  </li>
+  <li>Oregon
+    <dl>
+      <dt>Portland</dt>
+      <dd>1</dd>
+    </dl>
+  </li>
+</ul>
+```
+
+## Types
+
 * Strings (== list of `Char`s)
 * `ByteString` (strict and lazy)
 * `Text` (strict and lazy)
@@ -303,7 +344,7 @@ main =
 ```
 
 * Problem: allocates lots of buffers
-* We'll look at the FFI later about this
+* Advanced: can use lower-level FFI functions with reused buffer
 
 ## Exercise
 
@@ -513,7 +554,7 @@ main = do
   TIO.putStrLn text2
 ```
 
-`classy-prelude`'s `decodeUtf8` does `lenientDecode` instead.
+Use or `decodeUtf8'`, which returns an `Either`.
 
 __Question__ What character encoding did `TIO.putStrLn` use?
 

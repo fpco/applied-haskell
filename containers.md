@@ -1,5 +1,7 @@
 # containers
 
+See <string-types.md> for exercise for this section.
+
 ## Maps
 
 * Dictionaries
@@ -572,3 +574,11 @@ Also: we can bypass the `sort` if we move over to a `Map` instead.
 dropBottom20Percent :: Ord a => Set a -> Set a
 dropBottom20Percent s = Set.drop (Set.size s `div` 5) s
 ```
+
+## Section exercise
+
+See beginning of <string-types.md>
+
+* Try to use `Builder`s
+* In real world code: use proper CSV and HTML libraries
+* Bonus for after the course: rewrite with csv-conduit and lucid

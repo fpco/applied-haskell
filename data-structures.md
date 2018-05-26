@@ -2,8 +2,8 @@
 
 *You mean Haskell has things besides lists???*
 
-We're starting today with a focus on data structures, since getting
-your data right is step 1 to great Haskell code.
+It's important to focus on data structures, since getting your data
+right is step 1 to great Haskell code.
 
 ## Generic data structures
 

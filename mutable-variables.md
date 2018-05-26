@@ -1,11 +1,13 @@
 # Mutable variables
 
+Section exercise: write your own `TMVar` implementation.
+
 Use cases:
 
 * Communication among threads
 * Let values survive an exception in a `StateT`
 * Ugly hacks
-* Inherently mutable algorithms
+* Inherently mutable algorithms (usually for performance)
 
 ## IORef
 
@@ -90,54 +92,6 @@ inner =
         else modify (+ 1)
 ```
 
-Challenge: can we write this to work with `ST` as well?
-
-```haskell
--- FIXME this doesn't make sense anymore
-#!/usr/bin/env stack
--- stack --resolver lts-11.10 script
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE MultiParamTypeClasses #-}
-import Data.Primitive.MutVar
-import UnliftIO (MonadUnliftIO, SomeException, tryAny)
-import Control.Monad.Reader
-import Control.Monad.State.Class
-import System.Random (randomRIO)
-import Control.Monad.Primitive
-
-newtype StateRefT s m a = StateRefT (ReaderT (MutVar (PrimState m) s) m a)
-  deriving (Functor, Applicative, Monad, MonadIO)
-
-instance PrimMonad m => MonadState s (StateRefT s m) where
-  get = StateRefT $ ReaderT readMutVar
-  put x = StateRefT $ ReaderT $ \ref -> writeMutVar ref $! x
-
-runStateRefT
-  :: MonadUnliftIO m
-  => StateRefT s m a
-  -> s
-  -> m (s, Either SomeException a)
-runStateRefT (StateRefT (ReaderT f)) s = do
-  ref <- liftIO $ newMutVar s
-  ea <- tryAny $ f ref
-  s' <- readMutVar ref
-  return (s', ea)
-
-main :: IO ()
-main = runStateRefT inner 0 >>= print
-
-inner :: StateRefT Int IO ()
-inner =
-    replicateM_ 10000 go
-  where
-    go = do
-      res <- liftIO $ randomRIO (1, 100)
-      if res == (100 :: Int)
-        then error "Got 100"
-        else modify (+ 1)
-```
-
 ### Memory usage
 
 Let's calculate fibs (ugh).
@@ -206,7 +160,7 @@ main = do
 
 * Much better: `51,936 bytes allocated in the heap`
 * But that interface sucks
-* mutable-containers to the rescue!
+* rio to the rescue!
 
 ```haskell
 #!/usr/bin/env stack
@@ -214,22 +168,23 @@ main = do
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
-import Control.Monad
-import Data.Mutable
+{-# LANGUAGE NoImplicitPrelude #-}
+import RIO
+import Prelude (print)
 
 main :: IO ()
 main = do
-  fib1 <- newRef 0 :: IO (IOURef Int)
-  fib2 <- newRef 1 :: IO (IOURef Int)
+  fib1 <- newURef (0 :: Int)
+  fib2 <- newURef 1
 
   -- we're gonna overflow, just ignore that
   replicateM_ 1000000 $ do
-    x <- readRef fib1
-    y <- readRef fib2
-    writeRef fib1 y
-    writeRef fib2 (x + y)
+    x <- readURef fib1
+    y <- readURef fib2
+    writeURef fib1 y
+    writeURef fib2 (x + y)
 
-  readRef fib2 >>= print
+  readURef fib2 >>= print
 ```
 
 * Explicit type signatures needed
@@ -255,8 +210,9 @@ Onward and downward!
 ```haskell
 #!/usr/bin/env stack
 -- stack --resolver lts-11.10 script
-import Control.Concurrent.MVar
-import Control.Concurrent.Async (replicateConcurrently_)
+{-# LANGUAGE NoImplicitPrelude #-}
+import RIO
+import Prelude (print)
 import System.Random (randomRIO)
 
 main :: IO ()
@@ -281,13 +237,13 @@ Common pattern: send a notification between threads.
 ```haskell
 #!/usr/bin/env stack
 -- stack --resolver lts-11.10 script
+{-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE OverloadedStrings #-}
-import Control.Concurrent.Async
-import Control.Concurrent.MVar
+import RIO
 import Network.Wai
 import Network.Wai.Handler.Warp
 import Network.HTTP.Types
-import Data.Function (fix)
+import Prelude (putStrLn, getLine)
 
 app :: Application
 app _req send = send $ responseBuilder status200 [] "Hello World"
@@ -322,10 +278,9 @@ main = do
 ```haskell
 #!/usr/bin/env stack
 -- stack --resolver lts-11.10 script
+{-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE OverloadedStrings #-}
-import Control.Concurrent.STM
-import Control.Monad
-import Control.Concurrent.Async
+import RIO
 import Say
 
 main :: IO ()
@@ -347,114 +302,10 @@ main = do
   replicateConcurrently_  20 makePurchase
 ```
 
-### Work queue
-
-Problem statement:
-
-> We want to spawn a number of worker threads which will each sleep
-> for a random period of time, grab an integer off of a shared work
-> queue, square it, and put the result back on a result
-> queue. Meanwhile, a master thread will fill up the work queue with
-> integers, and read and print results.
-
-Stolen from:
-<https://www.fpcomplete.com/blog/2016/11/comparative-concurrency-with-haskell>
-
-```haskell
-#!/usr/bin/env stack
--- stack --resolver lts-11.10 script
-import Control.Concurrent (threadDelay)
-import Control.Concurrent.Async (mapConcurrently_, concurrently_)
-import Control.Concurrent.STM (atomically)
-import Control.Concurrent.STM.TBMChan (TBMChan, readTBMChan, writeTBMChan, newTBMChan, closeTBMChan)
-import System.Random (randomRIO)
-
-workerCount, workloadCount, minDelay, maxDelay :: Int
-workerCount = 250
-workloadCount = 10000
-minDelay = 250000 -- in microseconds, == 0.25 seconds
-maxDelay = 750000 --                  == 0.75 seconds
-
-worker :: TBMChan Int
-       -> TBMChan (Int, Int, Int)
-       -> Int
-       -> IO ()
-worker requestChan responseChan workerId = do
-    let loop = do
-            delay <- randomRIO (minDelay, maxDelay)
-            threadDelay delay
-
-            mint <- atomically $ readTBMChan requestChan
-            case mint of
-                Nothing -> return ()
-                Just int -> do
-                    atomically $
-                        writeTBMChan responseChan (workerId, int, int * int)
-                    loop
-    loop
-
-main :: IO ()
-main = do
-    -- Create our communication channels. Now the response channel is
-    -- also bounded and closable.
-    requestChan <- atomically $ newTBMChan (workerCount * 2)
-    responseChan <- atomically $ newTBMChan (workerCount * 2)
-
-    -- We're going to have three main threads. Let's define them all
-    -- here. Note that we're _defining_ an action to be run, not
-    -- running it yet! We'll run them below.
-    let
-        -- runWorkers is going to run all of the worker threads
-        runWorkers = do
-            -- mapConcurrently runs each function in a separate thread
-            -- with a different argument from the list, and then waits
-            -- for them all to finish. If any of them throw an
-            -- exception, all of the other threads are killed, and
-            -- then the exception is rethrown.
-            mapConcurrently_ (worker requestChan responseChan) [1..workerCount]
-            -- Workers are all done, so close the response channel
-            atomically $ closeTBMChan responseChan
-
-        -- Fill up the request channel, exactly the same as before
-        fillRequests = do
-            mapM_ (atomically . writeTBMChan requestChan) [1..workloadCount]
-            atomically $ closeTBMChan requestChan
-
-        -- Print each result
-        printResults = do
-            -- Grab a response if available
-            mres <- atomically $ readTBMChan responseChan
-            case mres of
-                -- No response available, so exit
-                Nothing -> return ()
-                -- We got a response, so...
-                Just (workerId, int, square) -> do
-                    -- Print it...
-                    putStrLn $ concat
-                        [ "Worker #"
-                        , show workerId
-                        , ": square of "
-                        , show int
-                        , " is "
-                        , show square
-                        ]
-                    -- And loop!
-                    printResults
-
-    -- Now that we've defined our actions, we can use concurrently to
-    -- run all of them. This works just like mapConcurrently: it forks
-    -- a thread for each action and waits for all threads to exit
-    -- successfully. If any thread dies with an exception, the other
-    -- threads are killed and the exception is rethrown.
-    runWorkers `concurrently_` fillRequests `concurrently_` printResults
-```
+Much more to STM: <https://haskell-lang.org/library/stm> FIXME copy it over
 
 ## Exercises
 
-* Concurrent fibs
-    * `IORef`
-    * `MVar`
-    * `TVar`
 * Rewrite Warp example with STM
     * Use a `TMVar` baton
     * Use `TVar` and `check`

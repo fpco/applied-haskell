@@ -77,28 +77,27 @@ than the material above.
 
 ## Intro
 
+Goal: get on the same page about basics of Haskell, some terminology
+we can use, and understand Haskell's evaluation model.
+
 * [Overview](overview.md)
-* [Synonyms in base](https://haskell-lang.org/tutorial/synonyms)
-* [Operator glossary](https://haskell-lang.org/tutorial/operators)
-* [Common typeclasses](common-typeclasses.md)
-* [All About Strictness](https://www.fpcomplete.com/blog/2017/09/all-about-strictness)
 * [Data types](data-types.md)
+* [Common typeclasses](common-typeclasses.md)
+* [All About Strictness](all-about-strictness.md)
 
 ## Data structures
 
+Goal: get comfortable with the most common data structures in Haskell.
+
 * [Data Structures](data-structures.md)
 * [String Types](string-types.md)
-* [Vector](vector.md)
 * [Containers](containers.md)
+* [Vector](vector.md)
 * Let's revisit that data structure quiz...
 
 ## RIO
 
 * [RIO](rio.md)
-* [Lens](lens.md)
-* [Monad transformers](monad-transformers.md)
-* [Logging](logging.md)
-* [External processes via typed-process](https://haskell-lang.org/library/typed-process)
 
 ## Concurrency
 

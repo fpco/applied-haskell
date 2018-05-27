@@ -724,8 +724,6 @@ main = do
   replicateConcurrently_  20 makePurchase
 ```
 
-Much more to STM: <https://haskell-lang.org/library/stm> FIXME copy it over
-
 ## Exercises
 
 * Rewrite Warp example with STM

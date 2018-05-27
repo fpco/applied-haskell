@@ -563,7 +563,7 @@ caught by the `try` and execution continues indefinitely. This is
 _very bad code_, don't do this!
 
 __Exercise__ Switch the import from `Control.Exception` to
-`Control.Exception.Safe`. What happens? Why?
+`UnliftIO.Exception`. What happens? Why?
 
 ### Linking
 
@@ -727,13 +727,6 @@ Using `UnliftIO.Async` as a drop in replacement for
 `Control.Concurrent.Async` is straightforward, the only API change to
 be aware of is that the `Async` data type will take an extra type
 paramter for the underlying monad.
-
-FIXME: copy material from
-* [async](https://haskell-lang.org/library/async)
-
-* __Exercise__: Write a concurrent program that prints the numbers 1 to 100 in
-  one thread, pausing one second between number, and printing "Hello World"
-  seconds in another thread
 
 ## Section exercise
 

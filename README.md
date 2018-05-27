@@ -141,7 +141,6 @@ Deeper understanding of Haskell performance, and how to improve it.
 ## Worked examples
 
 * [Length-matched vectors](examples/length-matched-vectors.md)
-* [Validation Applicative](examples/validation-applicative.md)
 * [Rate limiting using STM](https://github.com/snoyberg/rate-limit)
 * [RWST in terms of IORef](https://gist.github.com/snoyberg/7ac111bc873be6a361e452adb5454cb9)
 

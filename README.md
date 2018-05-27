@@ -20,7 +20,7 @@ started.
    you have at least version 1.7.
 2. We're going to be using LTS 11.10). You may as well install
    an unnecessarily broad number of packages right off the bat:
-   `stack build --resolver lts-11.10 classy-prelude-yesod lens rio yesod-test foldl microlens-platform wai-conduit`
+   `stack build --resolver lts-11.10 classy-prelude-yesod lens rio yesod-test foldl microlens-platform wai-conduit hspec`
 
      * You may also find it convenient to run `stack config set resolver lts-11.10`
        from outside of a project to set your global resolver to match.
@@ -102,10 +102,7 @@ Goal: get comfortable with the most common data structures in Haskell.
 ## Concurrency
 
 * [Mutable variables](mutable-variables.md)
-* [async](https://haskell-lang.org/library/async)
-    * __Exercise__: Write a concurrent program that prints the numbers
-      1 to 100 in one thread, pausing one second between number, and
-      printing "Hello World" seconds in another thread
+* [async](async.md)
 * [stm](https://haskell-lang.org/library/stm)
 * [Exceptions](exceptions.md)
 

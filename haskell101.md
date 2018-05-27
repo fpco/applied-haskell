@@ -114,12 +114,13 @@ Added at the top of your file. Basic structure:
 #!/usr/bin/env stack
 -- stack --resolver lts-11.10 script
 -- Above two lines for scripts, we'll cover that below
-{-# LANGUAGE ... #-}
+{-# LANGUAGE OverloadedStrings #-}
+-- {-# LANGUAGE ... #-}
 {-# OPTIONS_GHC -Wall #-} -- better in package.yaml file, below
 module Main (main) where
 
 import Control.Monad (when)
-import ...
+-- import ...
 
 main :: IO ()
 main = putStrLn "Finally, some actual code!"

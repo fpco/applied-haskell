@@ -5,7 +5,7 @@
 {-# LANGUAGE MultiWayIf #-}
 import RIO
 import RIO.Process
-import RIO.FilePath (takeExtension, replaceExtension)
+import RIO.FilePath (takeExtension, replaceExtension, (</>), (<.>))
 import RIO.Directory (createDirectoryIfMissing, removeFile, doesFileExist)
 import Conduit
 import Text.Sundown
@@ -64,19 +64,19 @@ run = do
   allFiles <- splitFiles rawFiles
   let markdowns = filter (\fp -> takeExtension fp == ".md") allFiles
   Content urls snippets <- runConduit $ yieldMany markdowns .| foldMapMC parseContent
-  writeFileUtf8 "etc/urls.txt" $ T.unlines $ HS.toList urls
-  createDirectoryIfMissing True "etc/snippets"
+  writeFileUtf8 ("etc" </> "urls.txt") $ T.unlines $ HS.toList urls
+  createDirectoryIfMissing True ("etc" </> "snippets")
   snippetFPs <- runConduit $ yieldMany snippets .| foldMapMC (\text -> do
     let digest :: Crypto.Hash.Digest Crypto.Hash.SHA256
         digest = Crypto.Hash.hash $ encodeUtf8 text
-        fp = "etc/snippets/" ++ show digest ++ ".hs"
+        fp = "etc" </> "snippets" </> show digest <.> ".hs"
     exists <- doesFileExist fp
     unless exists $ do
       logDebug $ "Writing new file: " <> fromString fp
       writeFileUtf8 fp text
     pure $ HS.singleton fp
     )
-  runConduitRes $ sourceDirectory "etc/snippets" .| mapM_C (\fp ->
+  runConduitRes $ sourceDirectory ("etc" </> "snippets") .| mapM_C (\fp ->
     if
       | takeExtension fp /= ".hs" -> pure ()
       | fp `HS.member` snippetFPs -> do

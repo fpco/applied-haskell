@@ -1,13 +1,32 @@
 # Primitive Haskell
 
-Let's dive into that magic hash business...
+Section exercise: write the `RIO` monad without using the `IO` type at
+all.
+
+__NOTE__ Most Haskell programmers will never need to write code that
+uses primitive Haskell operations. However, analyzing GHC core is much
+easier if you understand this. Plus, it can be fun to understand
+this. Consider this unwrapping a complete layer of abstraction that
+won't often, if ever, be necessary.
 
 ## More primops
 
-We saw `+#` for adding two `Int#`s together. What other goodies do we
-have?
+We touched on some primops for adding before:
 
-<https://www.stackage.org/haddock/lts-11.10/ghc-prim-0.5.0.0/GHC-Prim.html>
+```haskell
+#!/usr/bin/env stack
+-- stack --resolver lts-11.10 script
+{-# LANGUAGE MagicHash #-}
+import GHC.Prim
+import GHC.Types
+
+main :: IO ()
+main = print $ I# (5# +# 6#)
+```
+
+What other goodies do we have?
+
+<https://www.stackage.org/haddock/lts-11.10/ghc-prim-0.5.1.1/GHC-Prim.html>
 
 ```haskell
 data MutVar# s a
@@ -85,7 +104,7 @@ __Exercise__ Rewrite `return` and `>>=` for `IO` with unboxed
 functions.
 
 __Exercise__ Rewrite `runST`. You'll need
-[`runRW#`](https://www.stackage.org/haddock/lts-11.10/ghc-prim-0.5.0.0/GHC-Magic.html#v:runRW-35-)
+[`runRW#`](https://www.stackage.org/haddock/lts-11.10/ghc-prim-0.5.1.1/GHC-Magic.html#v:runRW-35-)
 in `GHC.Magic`.
 
 ```haskell
@@ -180,3 +199,9 @@ What do you think `unsafePerformIO`'s implementation looks like? Let's
 see:
 
 <https://wiki.haskell.org/Evaluation_order_and_state_tokens>
+
+Total bonus section...
+
+## Exercise
+
+Write the `RIO` monad without using the `IO` type at all.

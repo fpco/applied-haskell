@@ -1,5 +1,8 @@
 # Performance
 
+Section exercise: write a Gauge benchmark suite to test various
+implementations of `average` against each other.
+
 * Profiling
 * Optimization
 * Analyzing core
@@ -21,7 +24,6 @@ Run it, it's slow:
 
 ```
 $ time ./Main.hs
-No packages provided, using experimental import parser
 5000000.5
 
 real	0m5.478s
@@ -185,9 +187,23 @@ is ugly/repetitive. Let's try some additional approaches.
 
 ## vector
 
-NOTE: While preparing this bit, I discovered a bug in vector that's
+NOTE (from 2017): While preparing this bit, I discovered a bug in vector that's
 been fixed upstream but not yet released
 <https://github.com/haskell/vector/issues/111>.
+
+2018: Still seems to be a problem
+
+```haskell
+#!/usr/bin/env stack
+-- stack --resolver lts-11.10 script
+import qualified Data.Vector.Unboxed as V
+
+main :: IO ()
+main =
+  let nums1 = V.enumFromTo (1 :: Int) 10000000
+      nums2 = V.enumFromTo (1 :: Int) 10000000
+   in print $ fromIntegral (V.sum nums1) / fromIntegral (V.length nums2)
+```
 
 ## List foldl'
 
@@ -514,10 +530,8 @@ The full output: <https://gist.github.com/snoyberg/53b1257507d0b2d5ffc6124ba5ac9
 
 ## Exercise
 
-FIXME use gauge
-
-Create a criterion benchmark with the various examples from above, and
-see what turns out to be fastest.
+Section exercise: write a Gauge benchmark suite to test various
+implementations of `average` against each other.
 
 __Extra credit__ Also use weigh to measure allocations:
 <https://www.stackage.org/package/weigh>

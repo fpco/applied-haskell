@@ -1,5 +1,9 @@
 # yaml
 
+Section exercise: write a program using the `rio` template that
+receives a database connection string as an environment variable, by
+using a YAML config file.
+
 * High level API based on aeson
 * Low-level, streaming API (we won't cover it)
 * Config file helpers

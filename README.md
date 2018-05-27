@@ -97,50 +97,46 @@ Goal: get comfortable with the most common data structures in Haskell.
 
 ## RIO
 
+Goal: understand monad transformers, how RIO bypasses most of their
+usages, and other reasons to use RIO in general.
+
+* [Monad transformers](monad-transformers.md)
 * [RIO](rio.md)
 
 ## Concurrency
 
+Write concurrent code safely and easily, avoiding data races almost
+automatically.
+
 * [Mutable variables](mutable-variables.md)
 * [async](async.md)
-* [stm](https://haskell-lang.org/library/stm)
 * [Exceptions](exceptions.md)
 
 ## Testing
 
-* [hspec](hspec.md) (and some criterion for fun)
+"If it compiles it works" is a lie, don't believe it.
+
+* [hspec](hspec.md) (and some gauge benchmarking for fun)
 
 ## Performance
 
+Deeper understanding of Haskell performance, and how to improve it.
+
 * [Primitive Haskell](primitive.md)
-* [Evaluation order and state tokens](https://wiki.haskell.org/Evaluation_order_and_state_tokens)
 * [Profiling](profiling.md)
 
-## Data formats
+## Configuration
 
-* [aeson](https://haskell-lang.org/library/aeson)
 * [yaml](yaml.md)
 
 ## Streaming
 
-* conduit
-    * [Slides for later this week](https://www.snoyman.com/reveal/conduit-yesod)
-    * [Official tutorial](https://haskell-lang.org/library/conduit)
-    * Show of hands: who wants to cover this today?
-    * __Exercise__: Take a file and, for each line, print out the
-      number of bytes in the line (try using bytestring directly and
-      then conduit). Taken from
-      [StackOverflow questions](http://stackoverflow.com/questions/42675764/read-large-lines-in-huge-file-without-buffering/42676477#42676477)
+* [conduit](conduit.md)
 
 ## HTTP
 
-* [HTTP clients](https://haskell-lang.org/library/http-client)
-    * __Exercise__: Make an HTTP request and print the returned HTML to the console
 * [Web services](web-services.md)
-
-## CLIs
-
-* [optparse-applicative](https://haskell-lang.org/library/optparse-applicative)
+* [HTTP clients](http-client.md)
 
 ## Worked examples
 
@@ -148,9 +144,9 @@ Goal: get comfortable with the most common data structures in Haskell.
 * [Validation Applicative](examples/validation-applicative.md)
 * [Rate limiting using STM](https://github.com/snoyberg/rate-limit)
 * [RWST in terms of IORef](https://gist.github.com/snoyberg/7ac111bc873be6a361e452adb5454cb9)
-* FIXME add something with a CLI
 
 ## Bonus material
 
 * https://www.snoyman.com/reveal/what-makes-haskell-unique
 * http://chrisdone.com/posts/haskell-constraint-trick
+* [optparse-applicative](https://haskell-lang.org/library/optparse-applicative) for CLIs

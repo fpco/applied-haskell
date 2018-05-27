@@ -7,57 +7,43 @@
 ## Get started
 
 ```
-$ stack new mylib --resolver lts-11.10
+$ stack new mylib rio --resolver lts-11.10
 $ cd mylib
 $ stack test
 ...
-Test suite not yet implemented
-```
-
-Add `hspec` to `test-suite`'s `build-depends`
-
-```
-$ stack test
-...
-Test suite not yet implemented
+mylib-0.1.0.0: Test suite mylib-test passed
 ```
 
 Woohoo, let's kick this off
 
 ## Test driven development
 
-Add to `src/Lib.hs` `myReverse` export and:
+Create an `src/Reverse.hs`:
 
 ```haskell
+{-# LANGUAGE NoImplicitPrelude #-}
+module Reverse
+  ( myReverse
+  ) where
+import RIO
+
 myReverse :: [a] -> [a]
 myReverse = undefined
 ```
 
-Modify `test/Spec.hs`
+Create `test/ReverseSpec.hs`
 
 ```haskell
-{-# OPTIONS_GHC -F -pgmF hspec-discover #-}
-```
-
-Create `test/LibSpec.hs`
-
-```haskell
-module LibSpec where
+module ReverseSpec where
 
 import Test.Hspec
 import Test.Hspec.QuickCheck
-import Lib
+import Reverse
 
 spec :: Spec
 spec = do
   describe "myReverse" $ do
     it "handles empty lists" $ myReverse [] `shouldBe` ([] :: [Int])
-```
-
-Add to `mylib.cabal`:
-
-```
-other-modules: LibSpec
 ```
 
 And now run in a terminal:
@@ -69,18 +55,13 @@ $ stack test --file-watch --fast
 It fails, of course:
 
 ```
-Lib
-  myReverse
-    handles empty lists FAILED [1]
-
 Failures:
-
-  test/LibSpec.hs:10:
-  1) Lib.myReverse handles empty lists
+  test/ReverseSpec.hs:10:
+  1) Reverse.myReverse handles empty lists
        uncaught exception: ErrorCall (Prelude.undefined
        CallStack (from HasCallStack):
          error, called at libraries/base/GHC/Err.hs:79:14 in base:GHC.Err
-         undefined, called at src/Lib.hs:10:13 in mylib-0.1.0.0-E0RD0ZuOXuDLp7ZS0P26FE:Lib)
+         undefined, called at src/Reverse.hs:9:13 in mylib-0.1.0.0-JvPVOgHHcOeAAaDSh8A4PO:Reverse)
 ```
 
 Fix it...
@@ -90,7 +71,7 @@ myReverse :: [a] -> [a]
 myReverse [] = []
 ```
 
-Add another test...
+Tests pass. Add another test...
 
 ```haskell
     it "reverses hello" $ myReverse "hello" `shouldBe` "olleh"
@@ -139,8 +120,9 @@ betterReverse =
 Test suite catches me!
 
 ```
-  1) Lib.betterReverse behaves the same as myReverse
-       Falsifiable (after 3 tests and 3 shrinks):
+  test/ReverseSpec.hs:16:
+  1) Reverse.betterReverse behaves the same as myReverse
+       Falsifiable (after 2 tests and 2 shrinks):
        expected: [0]
         but got: []
        [0]
@@ -162,23 +144,32 @@ Hurrah!
 ## Let's play with vector
 
 ```haskell
-module Lib
-    ( someFunc
-    , myReverse
-    , betterReverse
-    , vectorReverse
-    , uvectorReverse
-    , svectorReverse
-    ) where
+{-# LANGUAGE NoImplicitPrelude #-}
+module Reverse
+  ( myReverse
+  , betterReverse
+  , vectorReverse
+  , uvectorReverse
+  , svectorReverse
+  ) where
 
-import qualified Data.Vector.Generic as V
+import RIO
+import qualified RIO.Vector as V
+import qualified RIO.Vector.Boxed as VB
+import qualified RIO.Vector.Storable as VS
+import qualified RIO.Vector.Unboxed as VU
 import qualified Data.Vector.Generic.Mutable as VM
-import qualified Data.Vector as VB
-import qualified Data.Vector.Storable as VS
-import qualified Data.Vector.Unboxed as VU
-import Control.Exception (assert)
 
-...
+myReverse :: [a] -> [a]
+myReverse [] = []
+myReverse (x:xs) = myReverse xs ++ [x]
+
+betterReverse :: [a] -> [a]
+betterReverse =
+    loop []
+  where
+    loop res [] = res
+    loop res (x:xs) = loop (x:res) xs
 
 vectorReverseGeneric
   :: V.Vector v a
@@ -210,22 +201,23 @@ uvectorReverse = VU.toList . vectorReverseGeneric
 Awesome, but is it faster? Let's add a benchmark!
 
 ```
-benchmark reverse-bench
-  type:                exitcode-stdio-1.0
-  hs-source-dirs:      bench
-  main-is:             reverse.hs
-  build-depends:       base
-                     , mylib
-                     , criterion
-  ghc-options:         -O2
-  default-language:    Haskell2010
+benchmarks:
+  reverse-bench:
+    main: reverse-bench.hs
+    source-dirs: bench
+    dependencies:
+    - mylib
+    - gauge
+
+    ghc-options:
+    - -O2
 ```
 
 And `bench/reverse.hs`
 
 ```haskell
 import Lib
-import Criterion.Main
+import Gauge
 
 main :: IO ()
 main =
@@ -416,7 +408,5 @@ mean                 12.22 ms   (12.07 ms .. 12.37 ms)
 std dev              388.4 μs   (306.0 μs .. 490.7 μs)
 variance introduced by outliers: 10% (moderately inflated)
 ```
-
-And HTML report at <http://www.snoyman.com/static/reverse-bench.html>
 
 __Question__ What does this report tell you about the performance?

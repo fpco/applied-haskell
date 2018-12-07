@@ -42,7 +42,7 @@ bonus: minimize the memory representation.
 
 ```
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import qualified Data.Vector as V
 import UnliftIO.Exception (tryAny)
 
@@ -116,7 +116,7 @@ main = print $ V.sum $ V.enumFromTo 1 (10^9 :: Int)
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import qualified Data.Vector as V
 
 main :: IO ()
@@ -130,7 +130,7 @@ main = V.mapM_ print
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import qualified Data.Vector.Unboxed as V
 
 main :: IO ()
@@ -147,7 +147,7 @@ main = V.mapM_ print
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE FlexibleContexts #-}
 import qualified Data.Vector as VB
 import qualified Data.Vector.Storable as VS
@@ -173,7 +173,7 @@ Guess the output:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE FlexibleContexts #-}
 import qualified Data.Vector as VB
 import qualified Data.Vector.Storable as VS
@@ -223,7 +223,7 @@ __Exercise__ Implement `create` and `modify`
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE FlexibleContexts #-}
 import qualified Data.Vector as V
 import qualified Data.Vector.Mutable as VM
@@ -271,7 +271,7 @@ __Exercise__ Fill a vector with 100 random integers between 1 and
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import qualified Data.Vector.Unboxed as V
 import Data.Vector.Algorithms.Insertion (sort)
 import System.Random (randomRIO)
@@ -286,7 +286,7 @@ Or
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import qualified Data.Vector.Unboxed as V
 import qualified Data.Vector.Unboxed.Mutable as VM
 import Data.Vector.Algorithms.Insertion (sort)
@@ -312,7 +312,7 @@ Or
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import qualified Data.Vector.Unboxed as V
 import qualified Data.Vector.Unboxed.Mutable as VM
 import Data.Vector.Algorithms.Insertion (sort)
@@ -338,7 +338,7 @@ close to uniform. First use immutable vectors:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import           Data.Vector.Unboxed ((!), (//))
 import qualified Data.Vector.Unboxed as V
 import           System.Random       (randomRIO)
@@ -364,7 +364,7 @@ Now use mutable vectors:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import           Control.Monad               (replicateM_)
 import           Data.Vector.Unboxed         (freeze)
 import qualified Data.Vector.Unboxed.Mutable as V

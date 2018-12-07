@@ -15,7 +15,7 @@ We touched on some primops for adding before:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE MagicHash #-}
 import GHC.Prim
 import GHC.Types
@@ -26,7 +26,7 @@ main = print $ I# (5# +# 6#)
 
 What other goodies do we have?
 
-<https://www.stackage.org/haddock/lts-11.10/ghc-prim-0.5.1.1/GHC-Prim.html>
+<https://www.stackage.org/haddock/lts-12.21/ghc-prim-0.5.1.1/GHC-Prim.html>
 
 ```haskell
 data MutVar# s a
@@ -51,7 +51,7 @@ newtype ST s a = ST (State# s         -> (# State# s,         a #))
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import Data.IORef
 
 main :: IO ()
@@ -72,7 +72,7 @@ Rewritten with unboxed stuff:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE MagicHash #-}
 {-# LANGUAGE UnboxedTuples #-}
 import GHC.Prim
@@ -104,12 +104,12 @@ __Exercise__ Rewrite `return` and `>>=` for `IO` with unboxed
 functions.
 
 __Exercise__ Rewrite `runST`. You'll need
-[`runRW#`](https://www.stackage.org/haddock/lts-11.10/ghc-prim-0.5.1.1/GHC-Magic.html#v:runRW-35-)
+[`runRW#`](https://www.stackage.org/haddock/lts-12.21/ghc-prim-0.5.1.1/GHC-Magic.html#v:runRW-35-)
 in `GHC.Magic`.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE MagicHash #-}
 {-# LANGUAGE UnboxedTuples #-}
 {-# LANGUAGE RankNTypes #-}
@@ -149,7 +149,7 @@ unsafeToST :: IO a -> ST s a
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE MagicHash #-}
 {-# LANGUAGE UnboxedTuples #-}
 {-# LANGUAGE RankNTypes #-}

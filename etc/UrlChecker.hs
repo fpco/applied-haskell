@@ -1,5 +1,5 @@
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE NoImplicitPrelude #-}
 import RIO
 import Conduit

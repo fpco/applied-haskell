@@ -236,7 +236,7 @@ evaluated. Take a guess at the output of these programs:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import Debug.Trace
 
 add :: Int -> Int -> Int
@@ -254,7 +254,7 @@ Versus:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE BangPatterns #-}
 import Debug.Trace
 
@@ -311,7 +311,7 @@ programs:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE BangPatterns #-}
 
 add :: Int -> Int -> Int
@@ -329,7 +329,7 @@ Versus:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE BangPatterns #-}
 
 add :: Int -> Int -> Int
@@ -367,7 +367,7 @@ about what the output of this program will be:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE BangPatterns #-}
 
 add :: Int -> Int -> Int
@@ -747,7 +747,7 @@ abstract over many different data types. We can use this not only to
 avoid space leaks (as we're doing here), but also to avoid
 accidentally including exceptions inside thunks within a value. For an
 example of that, check out the
-[tryAnyDeep](https://www.stackage.org/haddock/lts-11.10/safe-exceptions-0.1.6.0/Control-Exception-Safe.html#v:tryAnyDeep)
+[tryAnyDeep](https://www.stackage.org/haddock/lts-12.21/safe-exceptions-0.1.6.0/Control-Exception-Safe.html#v:tryAnyDeep)
 function from the
 [safe-exceptions library](https://haskell-lang.org/library/safe-exceptions).
 
@@ -917,7 +917,7 @@ main = print $ average [1..1000000]
 ```
 
 Another nice helper function is
-[`force`](https://www.stackage.org/haddock/lts-11.10/deepseq-1.4.2.0/Control-DeepSeq.html#v:force). What
+[`force`](https://www.stackage.org/haddock/lts-12.21/deepseq-1.4.2.0/Control-DeepSeq.html#v:force). What
 this does is makes it that, when the expression you're looking at is
 evaluated to WHNF, it's _actually_ evaluated to NF. For example, we
 can rewrite the `go` function above as:
@@ -1178,7 +1178,7 @@ main = print $ runConduitPure $ enumFromToC 1 1000000 .| average
 You can test the memory usage of this with:
 
 ```
-$ stack --resolver lts-11.10 ghc --package conduit-combinators -- Main.hs -O2
+$ stack --resolver lts-12.21 ghc --package conduit-combinators -- Main.hs -O2
 $ ./Main +RTS -s
 ```
 
@@ -1197,7 +1197,7 @@ uses?
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE BangPatterns #-}
 
 data StrictList a = Cons !a !(StrictList a) | Nil

@@ -12,7 +12,7 @@ implementations of `average` against each other.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 
 main :: IO ()
 main =
@@ -140,7 +140,7 @@ Let's trick GHC into not keeping the list in memory.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 
 main :: IO ()
 main =
@@ -195,7 +195,7 @@ been fixed upstream but not yet released
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import qualified Data.Vector.Unboxed as V
 
 main :: IO ()
@@ -268,7 +268,7 @@ end Rec }
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 
 import qualified Control.Foldl as L
 
@@ -289,7 +289,7 @@ main = print $ L.fold average [1..10000000 :: Int]
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 
 import Conduit
 
@@ -322,7 +322,7 @@ Linking foo ...
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE BangPatterns #-}
 
 main :: IO ()
@@ -392,7 +392,7 @@ Doh, it's using `Integer` instead of `Int`:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE BangPatterns #-}
 
 main :: IO ()
@@ -420,7 +420,7 @@ Notice how close our code here looks to what GHC optimized out for us?
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE MagicHash #-}
 import GHC.Prim
 import GHC.Magic
@@ -457,7 +457,7 @@ Let's pull up an old example:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE FlexibleContexts #-}
 import qualified Data.Vector as VB
 import qualified Data.Vector.Storable as VS

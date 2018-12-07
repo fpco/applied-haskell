@@ -20,9 +20,9 @@ started.
    you have at least version 1.7.
 2. We're going to be using LTS 11.10). You may as well install
    an unnecessarily broad number of packages right off the bat:
-   `stack build --resolver lts-11.10 classy-prelude-yesod lens rio yesod-test foldl microlens-platform wai-conduit hspec`
+   `stack build --resolver lts-12.21 classy-prelude-yesod lens rio yesod-test foldl microlens-platform wai-conduit hspec`
 
-     * You may also find it convenient to run `stack config set resolver lts-11.10`
+     * You may also find it convenient to run `stack config set resolver lts-12.21`
        from outside of a project to set your global resolver to match.
 
 3. Make sure you can run the script below successfully. Save it to a
@@ -32,7 +32,7 @@ started.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 main = putStrLn "Hello World!"
 ```
 

@@ -662,8 +662,8 @@ either `MonadIO` or `MonadUnliftIO`.
 You'll want to refer to the documentation for transformers and mtl for
 these exercises:
 
-* <https://www.stackage.org/lts-11.10/package/transformers-0.5.2.0>
-* <https://www.stackage.org/lts-11.10/package/mtl-2.2.1>
+* <https://www.stackage.org/lts-12.21/package/transformers-0.5.2.0>
+* <https://www.stackage.org/lts-12.21/package/mtl-2.2.1>
 
 ### Exercise 1
 
@@ -672,7 +672,7 @@ Define a monad transformer `ReaderT`, such that the following works:
 ```haskell
 -- Does not compile
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE DeriveFunctor #-}
 import Control.Monad.Trans.Class
 import Control.Monad.IO.Class
@@ -705,7 +705,7 @@ to do this, both with and without monad transformers.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 
 foldTerminateM :: Monad m => (b -> a -> m (Either b b)) -> b -> [a] -> m b
 foldTerminateM = _
@@ -753,7 +753,7 @@ clean it up.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import Control.Monad.Trans.Maybe
 import Text.Read (readMaybe)
 import System.IO
@@ -794,7 +794,7 @@ compiles.
 ```haskell
 -- Does not compile
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import Control.Monad.Reader
 import Lens.Micro
 import Lens.Micro.Mtl (view) -- hint :)
@@ -844,7 +844,7 @@ instance, which internally looks like a `StateT`.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE DeriveFunctor #-}
 import Control.Monad.Trans.Class
 import Control.Monad.IO.Class
@@ -952,7 +952,7 @@ ageInYear = runMaybeT $ do
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import Control.Monad.Reader
 import Lens.Micro
 import Lens.Micro.Mtl
@@ -997,7 +997,7 @@ inner = do
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE DeriveFunctor #-}

@@ -39,7 +39,7 @@
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import Network.Wai
 import Network.Wai.Handler.Warp
@@ -85,7 +85,7 @@ type SimpleApp = Request -> IO Response
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import Network.Wai
 import Network.Wai.Handler.Warp
@@ -111,7 +111,7 @@ Lots of fields in `Request`, let's do some simple routing:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import Network.Wai
 import Network.Wai.Handler.Warp
@@ -197,7 +197,7 @@ Let's send a file the right way (`responseFile`):
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import Network.Wai
 import Network.Wai.Handler.Warp
@@ -215,7 +215,7 @@ And with streaming
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import Network.Wai
 import Network.Wai.Handler.Warp
@@ -246,7 +246,7 @@ together. Now generalize that to an arbitrarily sized list.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import Network.Wai
 import Network.Wai.Handler.Warp
@@ -286,7 +286,7 @@ is it? How can we work around it?
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import Network.Wai
 import Network.Wai.Handler.Warp
@@ -330,7 +330,7 @@ Let's be a little more pragmatic...
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import Network.Wai
 import Network.Wai.Handler.Warp
@@ -357,7 +357,7 @@ performance difference will be here vs the code above?
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import Data.Aeson
 import Network.HTTP.Simple
@@ -375,7 +375,7 @@ And server code
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import Network.Wai
 import Network.Wai.Conduit
@@ -410,7 +410,7 @@ __Exercise__ Do this with much better error handling
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import Network.Wai
 import Network.Wai.Conduit
@@ -455,7 +455,7 @@ main = run 3000 $ \req send -> do
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import Network.Wai
 import Network.Wai.Handler.Warp
@@ -492,7 +492,7 @@ main = run 3000
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import Network.Wai
 import Network.Wai.Handler.Warp

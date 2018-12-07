@@ -9,7 +9,7 @@ Two kinds of "logging" to discuss:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import Debug.Trace
 
 fib :: Int -> Int
@@ -41,7 +41,7 @@ __Question__ When is it valid to use `trace`?
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import Control.Monad.Logger.CallStack
 import Control.Monad.IO.Class
@@ -82,7 +82,7 @@ This doesn't compile:
 ```haskell
 -- Does not compile
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import Control.Monad.Logger.CallStack
 import Control.Concurrent.Async
@@ -115,7 +115,7 @@ Multiple solutions
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import Control.Monad.Logger.CallStack
 import Control.Monad.IO.Class
@@ -133,7 +133,7 @@ main = runStdoutLoggingT $ do
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import Control.Monad.Logger.CallStack
 import Control.Monad.IO.Unlift
@@ -150,7 +150,7 @@ main = runStdoutLoggingT $ withRunInIO $ \run ->
 
 ```haskell
 -- FIXME #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import Control.Monad.Logger.CallStack
 import Control.Monad.IO.Unlift
@@ -171,7 +171,7 @@ main = runStdoutLoggingT $ do
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
@@ -227,7 +227,7 @@ __Exercise__ Now make it a `StateT` using an `IORef`
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE MultiParamTypeClasses #-}

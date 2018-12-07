@@ -13,7 +13,7 @@ Long version:
 
 Further reading:
 
-* [UnliftIO.Exception](https://www.stackage.org/haddock/lts-11.10/unliftio-0.2.7.0/UnliftIO-Exception.html)
+* [UnliftIO.Exception](https://www.stackage.org/haddock/lts-12.21/unliftio-0.2.7.0/UnliftIO-Exception.html)
 * [safe-exceptions package](https://haskell-lang.org/tutorial/exception-safety)
 * [Exceptions best practices](https://www.fpcomplete.com/blog/2016/11/exceptions-best-practices-haskell)
   (highly opinionated)

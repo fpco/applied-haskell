@@ -1,8 +1,9 @@
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE MultiWayIf #-}
+{-# LANGUAGE PackageImports #-}
 import RIO
 import RIO.Process
 import RIO.FilePath (takeExtension, replaceExtension, (</>), (<.>))
@@ -18,7 +19,7 @@ import Text.XML (Document (..), Element (..), Node (..))
 import Control.Monad.Writer.Strict (execWriter, tell)
 import qualified RIO.HashSet as HS
 import qualified RIO.Map as Map
-import qualified Crypto.Hash
+import qualified "cryptonite" Crypto.Hash
 
 data App = App
   { appProcessContext :: !ProcessContext
@@ -82,7 +83,7 @@ run = do
       | fp `HS.member` snippetFPs -> do
         compiled <- doesFileExist $ replaceExtension fp ".o"
         unless compiled $
-          proc "stack" ["--resolver", "lts-11.10", "ghc", "--", fp, "-fdefer-typed-holes"] runProcess_
+          proc "stack" ["--resolver", "lts-12.21", "ghc", "--", fp, "-fdefer-typed-holes"] runProcess_
       | otherwise -> do
         logDebug $ "Removing file: " <> fromString fp
         removeFile fp)

@@ -15,7 +15,7 @@ Basic usage:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script --optimize
+-- stack --resolver lts-12.21 script --optimize
 import Data.IORef
 import Control.Concurrent.Async (mapConcurrently_)
 
@@ -43,14 +43,14 @@ main = do
 To trigger the race condition, run like this:
 
 ```
-stack --resolver lts-11.10 exec -- ghc -O2 -threaded -with-rtsopts=-N foo.hs && ./foo
+stack --resolver lts-12.21 exec -- ghc -O2 -threaded -with-rtsopts=-N foo.hs && ./foo
 ```
 
 ### Survive exceptions
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
@@ -98,7 +98,7 @@ Let's calculate fibs (ugh).
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
@@ -136,7 +136,7 @@ and pointer indirection. Mutable vectors to the rescue!
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
@@ -164,7 +164,7 @@ main = do
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
@@ -209,7 +209,7 @@ Onward and downward!
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE NoImplicitPrelude #-}
 import RIO
 import Prelude (print)
@@ -236,7 +236,7 @@ Common pattern: send a notification between threads.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE OverloadedStrings #-}
 import RIO
@@ -699,7 +699,7 @@ addFunds var amt = join $ atomically $ do
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE OverloadedStrings #-}
 import RIO

@@ -112,7 +112,7 @@ Added at the top of your file. Basic structure:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 -- Above two lines for scripts, we'll cover that below
 {-# LANGUAGE OverloadedStrings #-}
 -- {-# LANGUAGE ... #-}
@@ -228,7 +228,7 @@ executable hello-hpack
 * Configured via `stack.yaml` file
 * 0 or more local Cabal packages
 * Specifies a *resolver*
-    * Stackage snapshot (`nightly-2018-05-22`, `lts-11.10`)
+    * Stackage snapshot (`nightly-2018-05-22`, `lts-12.21`)
     * GHC version (no extra packages)
 * Can add extra deps, flag overrides, much more
 * Can pull in packages from a Git repo
@@ -236,7 +236,7 @@ executable hello-hpack
 ### stack.yaml example
 
 ```yaml
-resolver: lts-11.10
+resolver: lts-12.21
 
 # optional
 packages:
@@ -266,7 +266,7 @@ Figure out where this information goes
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import qualified Data.ByteString.Lazy.Char8 as BL8
 import           Network.HTTP.Simple

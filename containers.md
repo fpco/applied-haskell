@@ -54,7 +54,7 @@ $ echo hello world | ./Main.hs
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import qualified Data.ByteString.Lazy as BL
 import qualified Data.Map.Strict as Map
 
@@ -80,7 +80,7 @@ member :: (Ord k, Ord v) => k -> v -> MultiMap k v -> Bool
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE DeriveFoldable #-}
 import qualified Data.Map.Strict as Map
 import Data.Map.Strict (Map)
@@ -262,8 +262,8 @@ unionWith :: (v -> v -> v) -> Map k v -> Map k v -> Map k v
 
 You'll want to reference the APIs for `Map`s and `HashMap`s:
 
-* https://www.stackage.org/haddock/lts-11.10/containers-0.5.7.1/Data-Map-Strict.html
-* https://www.stackage.org/haddock/lts-11.10/unordered-containers-0.2.8.0/Data-HashMap-Strict.html
+* https://www.stackage.org/haddock/lts-12.21/containers-0.5.7.1/Data-Map-Strict.html
+* https://www.stackage.org/haddock/lts-12.21/unordered-containers-0.2.8.0/Data-HashMap-Strict.html
 
 ### Exercise 1
 
@@ -271,7 +271,7 @@ Implement the `printScore` function:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import Data.Map.Strict (Map)
 import qualified Data.Map.Strict as Map
 
@@ -298,7 +298,7 @@ have after a number of transactions. Fill in the implementation of
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import Data.HashMap.Strict (HashMap)
 import qualified Data.HashMap.Strict as HashMap
 import Control.Monad.State
@@ -340,13 +340,13 @@ Modify the program above to get that result.
 
 BONUS: If you really want to experience real-world Haskell code, go
 for better performance and use this module:
-https://www.stackage.org/haddock/lts-11.10/bytestring-0.10.8.1/Data-ByteString-Builder.html.
+https://www.stackage.org/haddock/lts-12.21/bytestring-0.10.8.1/Data-ByteString-Builder.html.
 
 ### Exercise 4
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import Data.HashMap.Strict (HashMap)
 import qualified Data.HashMap.Strict as HashMap
 import Data.List (sort)
@@ -388,18 +388,18 @@ NOTE: hard-coding `["Alice", "Charlie"]` is cheating! :)
 
 I want to drop the bottom 20% of test scores. Fill in the helper function.
 
-__NOTE__ I'm switching this exercise from lts-11.10 to lts-11.10. There's
+__NOTE__ I'm switching this exercise from lts-12.21 to lts-12.21. There's
 a new helper library function available that makes this much more
 straightforward to implement. Browse the docs at:
 
-https://www.stackage.org/haddock/lts-11.10/containers-0.5.10.2/Data-Set.html
+https://www.stackage.org/haddock/lts-12.21/containers-0.5.10.2/Data-Set.html
 
 You'll also want to use the `div` function, which does integration
 division.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import Data.Set (Set)
 import qualified Data.Set as Set
 
@@ -421,7 +421,7 @@ CHALLENGE: Do it for a `HashSet` instead. Why is this different?
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import Data.Map.Strict (Map)
 import qualified Data.Map.Strict as Map
 
@@ -452,7 +452,7 @@ main =
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 import Data.HashMap.Strict (HashMap)
 import qualified Data.HashMap.Strict as HashMap
 import Control.Monad.State
@@ -516,7 +516,7 @@ bytestring builder approach is even better.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-11.10 script
+-- stack --resolver lts-12.21 script
 {-# LANGUAGE OverloadedStrings #-}
 import           Control.Monad.State
 import           Data.ByteString.Builder (Builder, hPutBuilder, intDec)

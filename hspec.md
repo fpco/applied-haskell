@@ -7,7 +7,7 @@
 ## Get started
 
 ```
-$ stack new mylib rio --resolver lts-11.10
+$ stack new mylib rio --resolver lts-12.21
 $ cd mylib
 $ stack test
 ...

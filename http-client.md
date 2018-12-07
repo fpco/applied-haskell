@@ -468,11 +468,11 @@ main = do
                show (getResponseStatusCode response)
     print $ getResponseHeader "Content-Type" response
     L8.putStrLn $ getResponseBody response
+```
 
 For our purposes, you should use
 `tlsManagerSettings` to ensure you have full HTTP and HTTPS support (as all
 examples below do).
-```
 
 ## Lower level API
 
@@ -607,38 +607,11 @@ main = do
 
 ## Non-2XX responses
 
-The `checkStatus` record selector in versions older than 0.5 and
-`checkResponse` in 0.5 and later allows to examine request and response and
+The `checkResponse` record selector (starting in version 0.5 of http-client)
+allows you to examine the request and response and
 throw an exception if something is wrong. In versions older than 0.5 non-2XX
 response status codes were throwing exceptions, but now this has been
-changed and `checkResponse` does nothing by default. For users of older
-versions of the library, here is how to forbid throwing exceptions on
-adverse status codes:
-
-```haskell
-#!/usr/bin/env stack
--- stack script --resolver lts-5.13
-{-# LANGUAGE OverloadedStrings #-}
-import qualified Data.ByteString.Lazy.Char8 as L8
-import           Network.HTTP.Client
-import           Network.HTTP.Client.TLS
-import           Network.HTTP.Types.Status  (statusCode)
-
-main :: IO ()
-main = do
-    manager <- newManager tlsManagerSettings
-
-    -- Make a GET request to a POST-expecting endpoint, which will generate a
-    -- 405 status code
-    let request = "http://httpbin.org/post"
-            { checkStatus = \_ _ _ -> Nothing
-            }
-
-    response <- httpLbs request manager
-    putStrLn $ "The status code was: "
-            ++ show (statusCode $ responseStatus response)
-    L8.putStrLn $ responseBody response
-```
+changed and `checkResponse` does nothing by default.
 
 ## Proxy settings
 

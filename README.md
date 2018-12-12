@@ -81,6 +81,7 @@ Goal: get on the same page about basics of Haskell, some terminology
 we can use, and understand Haskell's evaluation model.
 
 * [Overview](overview.md)
+* [Haskell 101](haskell101.md)
 * [Data types](data-types.md)
 * [Common typeclasses](common-typeclasses.md)
 * [All About Strictness](all-about-strictness.md)

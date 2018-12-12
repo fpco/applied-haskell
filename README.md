@@ -6,9 +6,9 @@ than will actually fit into two days! I've organized the material to prioritize
 the topics with the highest interest level. I'm leaving this page over-filled
 with content so that you can continue after the course finishes if desired.
 
-For text-based communication for this course, we'll be using the
-`#applied-haskell-2018` channel on the [Functional Programming
-Slack](https://fpchat-invite.herokuapp.com/).
+For sharing code and text chat, please use:
+
+https://gitter.im/applied-haskell/2018-12
 
 ## Prepare for the training
 

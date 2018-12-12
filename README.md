@@ -18,7 +18,7 @@ started.
 1. Download and install Stack. Instructions are
    [available online](https://haskell-lang.org/get-started). Make sure
    you have at least version 1.7.
-2. We're going to be using LTS 11.10). You may as well install
+2. We're going to be using LTS 12.21). You may as well install
    an unnecessarily broad number of packages right off the bat:
    `stack build --resolver lts-12.21 classy-prelude-yesod lens rio yesod-test foldl microlens-platform wai-conduit hspec`
 

@@ -300,7 +300,7 @@ that it gives the output provided below.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-10.2 script
+-- stack --resolver lts-12.21 script
 import Control.Concurrent.STM
 import Control.Monad (replicateM_)
 
@@ -339,7 +339,7 @@ nice!), and wants to give Bob $20. Our code might initially look like:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-10.2 script
+-- stack --resolver lts-12.21 script
 import Control.Concurrent
 import Control.Concurrent.STM
 import Control.Monad (forever)
@@ -420,7 +420,7 @@ first.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-10.2 script
+-- stack --resolver lts-12.21 script
 import Control.Applicative ((<|>))
 import Control.Concurrent
 import Control.Concurrent.STM
@@ -518,7 +518,7 @@ variable. You'll end up with some code that looks like this:
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-10.2 script
+-- stack --resolver lts-12.21 script
 import Control.Concurrent.STM
 import Control.Monad (replicateM_)
 import System.IO.Unsafe (unsafePerformIO)
@@ -606,7 +606,7 @@ for HTTP requests.
 
 ```haskell
 #!/usr/bin/env stack
--- stack --resolver lts-10.2 script
+-- stack --resolver lts-12.21 script
 import Control.Concurrent.Async
 import Control.Concurrent.STM
 import Control.Concurrent.STM.TBMQueue
